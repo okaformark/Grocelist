@@ -1,0 +1,24 @@
+{
+	"name": "grocelist",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"start": "node server.js",
+		"server": "nodemon server.js"
+	},
+	"keywords": [],
+	"author": "Mark Okafor",
+	"license": "ISC",
+	"dependencies": {
+		"@material-ui/core": "^4.11.0",
+		"@material-ui/icons": "^4.9.1",
+		"concurrently": "^5.2.0",
+		"dotenv": "^8.2.0",
+		"express": "^4.17.1",
+		"mongoose": "^5.9.27"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.4"
+	}
+}
