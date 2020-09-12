@@ -16,4 +16,31 @@ router.get('/', async (req, res) => {
 	}
 });
 
+// @route post api/groceries
+// @DESC post groceries
+router.post('/', async (req, res) => {
+	const newGrocery = new Grocery({
+		name: req.body.name,
+		category: req.body.category,
+		price: req.body.price,
+	});
+	try {
+		const grocery = await newGrocery.save();
+		res.json(grocery);
+	} catch (error) {
+		console.error('object not found', error);
+		res.sendStatus(404);
+	}
+});
+
+//@route DELETE api/groceries/:id
+//@DESC Delete a grocery
+router.delete('/:id', async (req, res) => {
+	try {
+		await Grocery.findById(req.params.id).remove();
+		res.sendStatus(200).json({ success: 'item deleted' });
+	} catch (error) {
+		res.sendStatus(404).json({ failed: 'not found' });
+	}
+});
 module.exports = router;
