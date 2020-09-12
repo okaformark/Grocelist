@@ -16,6 +16,21 @@ router.get('/', async (req, res) => {
 	}
 });
 
+//@route PUT api/groceries/:id
+//@DESC update a grocery
+router.put('/:id', async (req, res) => {
+	try {
+		const updatedGrocery = await Grocery.findOneAndUpdate(
+			{ _id: req.params.id },
+			req.body,
+			{ new: true, runValidators: true }
+		);
+		res.json(updatedGrocery);
+	} catch (error) {
+		res.sendStatus(404).json(error);
+	}
+});
+
 // @route post api/groceries
 // @DESC post groceries
 router.post('/', async (req, res) => {
