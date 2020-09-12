@@ -16,6 +16,17 @@ router.get('/', async (req, res) => {
 	}
 });
 
+//@route GET/:ID api/groceries/:id
+///DESC Get one grocery
+router.get('/:id', async (req, res) => {
+	try {
+		const grocery = await Grocery.findById(req.params.id);
+		res.json(grocery).sendStatus(200);
+	} catch (error) {
+		res.sendStatus(404).json({ falied: 'item not found' });
+	}
+});
+
 //@route PUT api/groceries/:id
 //@DESC update a grocery
 router.put('/:id', async (req, res) => {
@@ -25,7 +36,7 @@ router.put('/:id', async (req, res) => {
 			req.body,
 			{ new: true, runValidators: true }
 		);
-		res.json(updatedGrocery);
+		res.json(updatedGrocery).sendStatus(200);
 	} catch (error) {
 		res.sendStatus(404).json(error);
 	}
@@ -41,7 +52,7 @@ router.post('/', async (req, res) => {
 	});
 	try {
 		const grocery = await newGrocery.save();
-		res.json(grocery);
+		res.json(grocery).sendStatus(200);
 	} catch (error) {
 		console.error('object not found', error);
 		res.sendStatus(404);
